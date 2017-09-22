@@ -1,3 +1,4 @@
+
 $(".gif").on("click", function(){
 	var state = $(this).attr("data-state");
 
@@ -8,15 +9,17 @@ $(".gif").on("click", function(){
 	else{
 		$(this).attr("src", $(this).attr("data-still"));
 		$(this).attr("data-state", "still");	
+	}
+});
 
 
-$(".button").on("click", function(){
+$(".click-me").on("click", function(){
 	var cartoon = $(this).attr("data-cartoon");
 	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + cartoon + "&api_key=dc6zaTOxFJmzC&limit=10";
 
 	$.ajax({
-		url: queryURL
-		type: "GET"
+		url: queryURL,
+		method: "GET"
 	})
 	
 	.done(function(response){
@@ -30,7 +33,7 @@ $(".button").on("click", function(){
 			var p = $("<p>").text("Rating: " + rating);
 
 			var cartoonImage = $("<img>");
-			cartoonImage.attr("src", results[i].images,fixed_height.url);
+			cartoonImage.attr("src", results[i].images.fixed_height.url);
 
 			gifDiv.prepend(p);
 			gifDiv.prepend(cartoonImage);
@@ -38,9 +41,8 @@ $(".button").on("click", function(){
 			$("#gif").prepend(gifDiv);
 
 		}
+	console.log("response", response);
 	});
 
-});
 
-	}
 });
