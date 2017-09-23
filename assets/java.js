@@ -12,11 +12,12 @@ $("#gif").on("click", function(){
 	}
 });
 
+
 $("#add-character").on("click", function(event){
 	event.preventDefault();
 	var character = $("addTo").val()
 	var item = $("<p>");
-	item.append("" + addTo);
+	item.append(character);
 
 	var jesse = $("<button>");
 
@@ -25,9 +26,9 @@ $("#add-character").on("click", function(event){
 	$("#box").append(item);
 
 
-})
+});
+console.log(url);
 
-}
 
 
 $("#box").on("click", function(){
