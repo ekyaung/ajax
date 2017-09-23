@@ -1,5 +1,5 @@
 
-$(".gif").on("click", function(){
+$("#gif").on("click", function(){
 	var state = $(this).attr("data-state");
 
 	if (state === "still") {
@@ -12,10 +12,28 @@ $(".gif").on("click", function(){
 	}
 });
 
+$("#add-character").on("click", function(event){
+	event.preventDefault();
+	var character = $("addTo").val()
+	var item = $("<p>");
+	item.append("" + addTo);
 
-$(".click-me").on("click", function(){
+	var jesse = $("<button>");
+
+	jesse.attr("button-to-add", addButton);
+	item = item.prepend(jesse);
+	$("#box").append(item);
+
+
+})
+
+}
+
+
+$("#box").on("click", function(){
 	var cartoon = $(this).attr("data-cartoon");
-	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + cartoon + "&api_key=dc6zaTOxFJmzC&limit=10";
+	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + 
+        cartoon + "&api_key=dc6zaTOxFJmzC&limit=10";
 
 	$.ajax({
 		url: queryURL,
@@ -38,10 +56,10 @@ $(".click-me").on("click", function(){
 			gifDiv.prepend(p);
 			gifDiv.prepend(cartoonImage);
 
-			$("#gif").prepend(gifDiv);
+			$("#gifs").prepend(gifDiv);
 
 		}
-	console.log("response", response);
+	// console.log("response", response);
 	});
 
 
