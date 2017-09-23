@@ -1,5 +1,7 @@
-
-$("#gif").on("click", function(){
+$("#gifs").on("click", function(){
+	var listOfGifs = $(this);
+	// loop through list and animate or freeze depending on state
+	console.log("this is called.")
 	var state = $(this).attr("data-state");
 
 	if (state === "still") {
@@ -15,24 +17,24 @@ $("#gif").on("click", function(){
 
 $("#add-character").on("click", function(event){
 	event.preventDefault();
-	var character = $("addTo").val()
-	var item = $("<p>");
-	item.append(character);
+	var character = $("#cartoonTextField").val();
+	var jesse = $('<button/>',
+    {
+    	id: "newButton",
+        text: character,
+        click: function () { 
+        	changeGifs(character);
+         }
+    });
 
-	var jesse = $("<button>");
+    $("#newButtonsArea").append(jesse);
 
-	jesse.attr("button-to-add", addButton);
-	item = item.prepend(jesse);
-	$("#box").append(item);
+    $("#cartoonTextField").val("");
 
 
 });
 
-
-
-
-$("#box").on("click", function(){
-	var cartoon = $(this).attr("data-cartoon");
+function changeGifs(cartoon) {
 	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + 
         cartoon + "&api_key=dc6zaTOxFJmzC&limit=10";
 
@@ -57,11 +59,23 @@ $("#box").on("click", function(){
 			gifDiv.prepend(p);
 			gifDiv.prepend(cartoonImage);
 
+			//assign id, data-state
+
 			$("#gifs").prepend(gifDiv);
 
 		}
-	// console.log("response", response);
 	});
+	// console.log("response", response);
+}
 
 
+
+$("#gifBox").on("click", function(){
+	var cartoon = $(this).attr("data-cartoon");
+	changeGifs(cartoon);
+});
+
+$("#gifBox1").on("click", function(){
+	var cartoon = $(this).attr("data-cartoon");
+	changeGifs(cartoon);
 });
