@@ -1,3 +1,4 @@
+
 $("#gifs").on("click", function(){
 	var listOfGifs = $(this);
 	// loop through list and animate or freeze depending on state
