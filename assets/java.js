@@ -27,7 +27,7 @@ $("#add-character").on("click", function(event){
 
 
 });
-console.log(url);
+
 
 
 
